@@ -1,0 +1,27 @@
+name: Setup DGMJR-IO SDK
+author: David G. Moore, Jr., <david@dgmjr.io>
+description: Sets up NuGet for use with a particular source
+
+branding:
+  icon: archive
+  color: green
+
+inputs:
+  source:
+    default: https://api.nuget.org/v3/index.json
+    required: false
+    description: The NuGet source URL
+  key:
+    required: false
+    description: The NuGet API key
+  name:
+    required: false
+    description: The NuGet API key
+    default: NuGet
+
+runs:
+  using: composite
+  steps:
+    - id: setup-nuget
+      name: Setup NuGet
+      run: dotnet nuget add source ${{ inputs.source }} --name ${{ inputs.name }} --password ${{ inputs.key }} --store-password-in-clear-text
