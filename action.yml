@@ -24,4 +24,5 @@ runs:
   steps:
     - id: setup-nuget
       name: Setup NuGet
+      shell: pwsh
       run: dotnet nuget add source ${{ inputs.source }} --name ${{ inputs.name }} --password ${{ inputs.key }} --store-password-in-clear-text
