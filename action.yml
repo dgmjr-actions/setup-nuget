@@ -27,6 +27,7 @@ runs:
       shell: pwsh
       run: dotnet nuget add source ${{ inputs.source }} --name ${{ inputs.name }};
     - id: set-nuget-api-key
+      if: ${{ inputs.key != '' }}
       name: Set NuGet API Key
       shell: pwsh
       run: nuget setapikey ${{ inputs.key }} -source ${{ inputs.source }}
