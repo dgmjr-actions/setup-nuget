@@ -23,8 +23,10 @@ runs:
   using: composite
   steps:
     - id: setup-nuget
-      name: Setup NuGet
+      name: Setup NuGet Source ${{ inputs.name }}
       shell: pwsh
-      run: |-
-        dotnet nuget add source ${{ inputs.source }} --name ${{ inputs.name }};
-        nuget setapikey ${{ inputs.key }} -source ${{ inputs.source }}
+      run: dotnet nuget add source ${{ inputs.source }} --name ${{ inputs.name }};
+    - id: set-nuget-api-key
+      name: Set NuGet API Key
+      shell: pwsh
+      run: nuget setapikey ${{ inputs.key }} -source ${{ inputs.source }}
